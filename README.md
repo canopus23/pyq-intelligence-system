@@ -1,75 +1,58 @@
-# PYQ Intelligence System (PYQ-IS)
+# PYQ Intelligence System
 
-**A reusable, source-grounded workflow for extracting, classifying, analysing and comparing Previous-Year Questions (PYQs).** Designed to work across subjects, universities, boards, programmes and examination systems.
+The PYQ Intelligence System is a source-grounded workflow for organizing and analysing previous-year examination questions (PYQs). It helps turn exam papers and syllabi into a traceable question register, compare recurring questions, summarize topic coverage, and prepare evidence-based study priorities.
 
-> The system plans first and waits for explicit approval before bulk processing.
+The workflow is designed for use across subjects, schools, boards, universities, and examination systems. It is an instruction package; it does not automatically extract or analyse documents by itself. Available file-reading, OCR, web, and export features depend on the assistant or platform being used.
 
-## What it does
+## What it supports
 
-- Extract questions from PDFs, documents, scans and other provided papers; retain source file/page references and extraction confidence.
-- Structure questions into a normalized register with paper metadata, marks, units, topics and original wording.
-- Map questions to syllabus topics using both provided syllabi and official sources; note source dates and conflicts.
-- Identify **exact repeats**, **conceptual repeats**, **related questions**, and **unique questions**.
-- Calculate transparent topic frequency, question frequency and known-mark totals; show denominators.
-- Analyse trends and prepare approved study priorities without presenting historical frequency as a guarantee.
-- Generate deliverables in Markdown, CSV, Excel and PDF as requested.
-- Validate outputs against source files and flag missing or uncertain details.
+- Inventorying exam papers and syllabus documents before analysis.
+- Extracting questions while preserving original wording and source locations.
+- Recording paper metadata, marks, question parts, syllabus mappings, and uncertainty.
+- Classifying matches as exact repeats, conceptual repeats, related questions, or unique questions.
+- Reporting paper frequency, question frequency, and known-mark totals with clear denominators.
+- Producing requested reports or registers in formats supported by the working platform.
+- Checking results against source documents and flagging gaps or uncertain details.
 
-## Quick start
+Historical frequency describes the supplied corpus; it does not guarantee what will appear on a future exam.
 
-1. Start a ChatGPT Project named **PYQ Intelligence System** (or use any compatible assistant/workspace).
-2. Add [`PROJECT-INSTRUCTIONS.txt`](PROJECT-INSTRUCTIONS.txt) to the project instructions.
-3. Upload [`SKILL.md`](SKILL.md) and [`PYQ-IS-Reference-Manual.md`](PYQ-IS-Reference-Manual.md) as reference files.
-4. Upload your PYQ papers and syllabus/course outline.
-5. Ask for the analysis you need. The workflow should return a task inventory and execution plan, then **wait for your approval**.
-6. Review the approved work and validate the resulting reports against the sources.
+## Getting started
 
-This is a portable instruction and template package—not an automatically installed native AI skill. Tool availability, file limits and capabilities vary by platform and account.
+1. Use an assistant or workspace that can read the exam papers and syllabus you want to analyse.
+2. Provide [`SKILL.md`](SKILL.md) as the workflow instructions or reference document.
+3. Upload the relevant PYQ papers and the syllabus version that applies to those papers.
+4. Ask for the analysis and the output format you need.
+5. Review the proposed inventory and plan. Bulk processing should begin only after you approve that plan.
+6. Review the delivered register and report, including source references and any flagged uncertainties.
 
-## Package contents
+Example request:
 
-| File / folder | Purpose |
+> Follow the PYQ Intelligence System workflow. I’m providing examination papers and the applicable syllabus. First inventory the files and propose an analysis plan. Wait for my approval before processing the full set.
+
+## Classification definitions
+
+| Label | Meaning |
 |---|---|
-| `SKILL.md` | Core reusable workflow instructions |
-| `PROJECT-INSTRUCTIONS.txt` | Instructions for a persistent assistant workspace |
-| `PYQ-IS-Reference-Manual.md` | Combined reference manual |
-| `QUICK-START.md` | Short setup guide |
-| `modules/` | Document processing, question analysis, reporting and validation procedures |
-| `schemas/` | Normalized question data schema |
-| `templates/` | Report template and question-register CSV |
-| `examples/` | Example task and proposed plan |
-| `tests/` | Acceptance checklist |
-| `PYQ-IS-Quick-Start.pdf` | Printable quick-start guide |
-| `PYQ-IS-Question-Register.xlsx` | Starter spreadsheet register |
+| Exact repeat | Wording is identical or substantially the same, aside from immaterial formatting differences. |
+| Conceptual repeat | Wording differs, but the core concept or task is materially the same. |
+| Related | The topic or skill overlaps, but the question is a different task. |
+| Unique | No meaningful match was found in the compared set. |
 
-## Classification model
+## Metric definitions
 
-1. **Exact repeat** — wording substantially matches an earlier question.
-2. **Conceptual repeat** — tests the same core concept with different wording or framing.
-3. **Related** — overlaps in topic or skills, but is not the same question.
-4. **Unique** — no meaningful match found in the supplied corpus.
+- **Paper frequency:** number of distinct papers containing at least one question mapped to a topic.
+- **Question frequency:** number of question records mapped to a topic; reports should explain how subparts are counted.
+- **Marks frequency:** sum of known marks mapped to a topic, with shared or unknown marks handled transparently.
 
-## Metrics
+Reports should state the corpus scope and show denominators, such as `4 of 8 papers`. Topics may overlap, so topic totals need not add up to the corpus total.
 
-- **Paper frequency:** number of distinct papers in which a topic appears.
-- **Question frequency:** number of question records associated with a topic.
-- **Marks frequency:** sum of known marks associated with a topic.
+## Repository contents
 
-Always show the denominator and corpus scope. Do not confuse question counts with paper counts, and do not imply that frequency guarantees future appearance.
-
-## Quality principles
-
-- Never invent question wording, marks, paper years, page numbers, syllabus mappings or official sources.
-- Preserve original wording; put normalized wording in a separate field.
-- Cite the source file and page for extracted questions; cite official sources for syllabus mappings.
-- Mark missing data and uncertainty explicitly.
-- Keep syllabus versions and source dates visible.
-- Review OCR and classification uncertainty rather than silently guessing.
-
-## License
-
-Released under the [MIT License](LICENSE).
+- [`SKILL.md`](SKILL.md) — core workflow instructions.
+- [`QUICK-START.md`](QUICK-START.md) — short setup and example prompt.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution guidance.
+- [`LICENSE`](LICENSE) — project license.
 
 ## Contributing
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) and the acceptance checklist in `tests/acceptance-tests.md`.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md). Keep analysis traceable to source files, preserve the original wording, and clearly distinguish evidence from interpretation.
